@@ -19,10 +19,11 @@ public class BeanContato {
     private String nome;
     private String fone;
     private String email;
-    private List<Contato> lista;
+    private String filtro;
+    private List<Contato> lista = new ArrayList<>();
 
     public void consultar(){      
-      lista = new Contato().consultar();  
+      lista = new Contato().consultar(nome);  
     }
     
     public int getIdcontato() {
@@ -60,6 +61,14 @@ public class BeanContato {
      public List<Contato> getLista() {
         return lista;
     }
+     
+    public String getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(String filtro) {
+        this.filtro = filtro;
+    }     
 
     public void salvar() {
         FacesContext view = FacesContext.getCurrentInstance();
@@ -87,8 +96,6 @@ public class BeanContato {
                 view.addMessage(null, msg);
             }
         }
-    }
-
-   
+    }  
 
 }

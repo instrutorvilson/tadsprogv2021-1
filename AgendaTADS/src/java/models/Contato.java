@@ -38,11 +38,12 @@ public class Contato {
         this.email = email;
     }
     
-    public List<Contato> consultar(){
+    public List<Contato> consultar(String filtro){
         ResultSet rs = null;
         List<Contato> lista = new ArrayList<>();
         try {
-            String sql = "select * from contato";
+            String sql = "select * from contato"
+                      + " where nome like '%"+filtro+"%'";
             Connection con = Conexao.conectar();
             PreparedStatement stm = con.prepareStatement(sql);
             rs = stm.executeQuery();

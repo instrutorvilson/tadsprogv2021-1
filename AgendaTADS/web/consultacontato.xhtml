@@ -8,7 +8,9 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="1">
+            <h:panelGrid columns="3">
+                <h:outputLabel>Informe parte do nome</h:outputLabel>
+                <h:inputText value="#{beanContato.nome}" />
                 <h:commandButton value="Pesquisar" action="#{beanContato.consultar()}" />
             </h:panelGrid>
             <h:dataTable var="ct" value="#{beanContato.lista}">
