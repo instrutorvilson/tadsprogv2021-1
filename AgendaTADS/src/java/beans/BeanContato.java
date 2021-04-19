@@ -5,6 +5,8 @@
  */
 package beans;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -17,7 +19,12 @@ public class BeanContato {
     private String nome;
     private String fone;
     private String email;
+    private List<Contato> lista;
 
+    public void consultar(){      
+      lista = new Contato().consultar();  
+    }
+    
     public int getIdcontato() {
         return idcontato;
     }
@@ -49,6 +56,10 @@ public class BeanContato {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+     public List<Contato> getLista() {
+        return lista;
+    }
 
     public void salvar() {
         FacesContext view = FacesContext.getCurrentInstance();
@@ -77,5 +88,7 @@ public class BeanContato {
             }
         }
     }
+
+   
 
 }

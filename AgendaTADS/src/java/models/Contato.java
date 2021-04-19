@@ -7,7 +7,10 @@ package models;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.utils.Conexao;
@@ -33,6 +36,28 @@ public class Contato {
         this.nome = nome;
         this.fone = fone;
         this.email = email;
+    }
+    
+    public List<Contato> consultar(){
+        ResultSet rs = null;
+        List<Contato> lista = new ArrayList<>();
+        try {
+            String sql = "select * from contato";
+            Connection con = Conexao.conectar();
+            PreparedStatement stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while(rs.next()){
+              lista.add(new Contato(
+                      rs.getInt("idcontato"),
+                      rs.getString("nome"),
+                      rs.getString("fone"),
+                      rs.getString("email")));
+            }
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+        return lista;
     }
     
     public boolean salvar(){
