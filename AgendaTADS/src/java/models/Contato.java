@@ -38,6 +38,30 @@ public class Contato {
         this.email = email;
     }
     
+    public Contato consultarById(int id){
+       ResultSet rs = null;
+       Contato ct = null;
+       try {
+            String sql = "select * from contato"
+                      + " where idcontato = ? ";
+            Connection con = Conexao.conectar();
+            PreparedStatement stm = con.prepareStatement(sql);
+            stm.setInt(1, id);
+            rs = stm.executeQuery();
+            if(rs.next()){
+              ct = new Contato(
+                      rs.getInt("idcontato"),
+                      rs.getString("nome"),
+                      rs.getString("fone"),
+                      rs.getString("email"));
+            }
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+       return ct;
+    }
+    
     public List<Contato> consultar(String filtro){
         ResultSet rs = null;
         List<Contato> lista = new ArrayList<>();
@@ -78,6 +102,27 @@ public class Contato {
         return true;
     }
 
+    public boolean update(){
+        try {
+            String sql = "update contato set "
+                     + " nome = ?, "
+                     + " fone = ?, "
+                     + " email = ? " 
+                     + " where idcontato = ?";
+            Connection con = Conexao.conectar();
+            PreparedStatement stm = con.prepareStatement(sql); 
+            stm.setString(1, this.nome);
+            stm.setString(2, this.fone);
+            stm.setString(3, this.email);
+            stm.setInt(4, this.idcontato);
+            stm.execute();
+            
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+        return true;
+    }
+    
     public String getEmail() {
         return email;
     }
