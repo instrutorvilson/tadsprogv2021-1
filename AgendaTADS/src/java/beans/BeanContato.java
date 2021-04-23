@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import models.Contato;
 
 @ManagedBean
@@ -34,7 +34,7 @@ public class BeanContato {
     }
     
     public String redirectEditar(int id){
-       return "editacontato.jsf?faces-redirect=true&idcontato="+id;      
+       return "editacontato.?faces-redirect=true&idcontato="+id;      
     }
     
     public void consultar(){      

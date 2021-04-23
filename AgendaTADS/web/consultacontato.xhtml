@@ -31,10 +31,11 @@
                     <h:outputLabel value="#{ct.email}" />
                 </h:column>  
                 <h:column>
-                    <h:commandButton value="#{ct.idcontato}" action="#{beanContato.redirectEditar(ct.idcontato)}"></h:commandButton>
-                </h:column>
+                    <h:commandButton value="#{ct.idcontato}" 
+                                     action="#{beanContato.redirectEditar(ct.idcontato)}" />
+                    </h:column>
             </h:dataTable>
-        </h:form>
+            </h:form>
     </h:body>
 </html>
 
